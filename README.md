@@ -1,4 +1,4 @@
-# gostat 
+# gofinstats
 
 A golang package with different statistic calculators.
 
@@ -6,5 +6,5 @@ A golang package with different statistic calculators.
 
 Import the package
 ```
-go get -u github.com/yaustn/gostat
+go get -u github.com/yaustn/gofinstats
 ```
