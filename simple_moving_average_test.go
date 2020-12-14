@@ -52,7 +52,7 @@ func TestSimpleMovingAverage(t *testing.T) {
 				sma.Add(val)
 			}
 
-			assert.Equal(t, tc.result, sma.GetAvg())
+			assert.Equal(t, tc.result, sma.GetAverage())
 		})
 	}
 }

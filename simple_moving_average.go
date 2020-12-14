@@ -8,7 +8,7 @@ type SimpleMovingAverage struct {
 	average float64   // the simple moving average
 }
 
-// NewSimpleMovingAverage returns
+// NewSimpleMovingAverage creates and returns a new SMA
 func NewSimpleMovingAverage(window int) *SimpleMovingAverage {
 	return &SimpleMovingAverage{
 		window:  window,
@@ -19,8 +19,8 @@ func NewSimpleMovingAverage(window int) *SimpleMovingAverage {
 	}
 }
 
-// GetAvg returns the SMA in O(1) time
-func (sma *SimpleMovingAverage) GetAvg() float64 {
+// GetAverage returns the SMA in O(1) time
+func (sma *SimpleMovingAverage) GetAverage() float64 {
 	return sma.average
 }
 
@@ -34,7 +34,7 @@ func (sma *SimpleMovingAverage) Add(val float64) float64 {
 		// To remove any rounding errors, we brute force an O(n) calculation every time
 		// the SMA window is filled.
 		if sma.i == 0 {
-			sma.Recalc()
+			sma.recalc()
 		}
 	} else { // still on the first loop, filling the window
 		sma.average = (val + (sma.average * float64(sma.n))) / float64(sma.n+1)
@@ -49,7 +49,7 @@ func (sma *SimpleMovingAverage) Add(val float64) float64 {
 
 // Recalc forces a full O(n) loop to recalculate the moving average's average.
 // Due to golang's float64 imprecision, a full recalc from time to time is necessary
-func (sma *SimpleMovingAverage) Recalc() float64 {
+func (sma *SimpleMovingAverage) recalc() float64 {
 	sum := float64(0)
 	for i := 0; i < sma.n; i++ {
 		sum += sma.vals[i]
